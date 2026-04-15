@@ -75,6 +75,31 @@
   border-radius: 50%;
 }
 
+.upload-csv-btn,
+.connect-bank-btn {
+  padding: 8px 16px;
+  border: 1px solid #d1d5db;
+  background-color: #f9fafb;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.upload-csv-btn:hover,
+.connect-bank-btn:hover {
+  background-color: #f3f4f6;
+  border-color: #9ca3af;
+  color: #111827;
+}
+
+.upload-csv-btn:active,
+.connect-bank-btn:active {
+  transform: scale(0.98);
+}
+
 /* Responsive */
 @media (max-width: 767px) {
   .header {
