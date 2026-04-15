@@ -1,0 +1,15 @@
+.summary-cards-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+/* Responsive */
+@media (max-width: 1023px) {
+  .summary-cards-container {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+}
