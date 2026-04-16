@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import "./Header.css";
 
-export default function Header() {
-  const [transactions, setTransactions] = useState([]);
+export default function Header({ onTransactionsUpload = () => {} }) {
   const fileInputRef = React.useRef(null);
 
   // Function to parse CSV string into JSON
@@ -10,21 +9,39 @@ export default function Header() {
     const lines = csvText.trim().split("\n");
     const headers = lines[0].split(",").map((h) => h.trim().toLowerCase());
 
-    const parsed = lines.slice(1).map((line) => {
+    const parsed = lines.slice(1).map((line, index) => {
       const values = line.split(",").map((v) => v.trim());
-      const row = {};
+      const row = { id: index + 1 };
 
-      headers.forEach((header, index) => {
+      headers.forEach((header, headerIndex) => {
         if (header === "amount") {
-          row[header] = parseFloat(values[index]) || 0;
+          row[header] = parseFloat(values[headerIndex]) || 0;
         } else {
-          row[header] = values[index];
+          row[header] = values[headerIndex];
         }
       });
 
       // Add type field (income/expense) - default to expense if not specified
       if (!row.type) {
         row.type = row.amount < 0 ? "expense" : "income";
+      }
+
+      // Add default status if not provided
+      if (!row.status) {
+        row.status = "Completed";
+      }
+
+      // Add default icon based on category
+      if (!row.icon) {
+        const catLower = (row.category || "").toLowerCase();
+        if (catLower.includes("food")) row.icon = "🍔";
+        else if (catLower.includes("transport")) row.icon = "🚗";
+        else if (catLower.includes("entertainment")) row.icon = "🎬";
+        else if (catLower.includes("shopping")) row.icon = "🛍️";
+        else if (catLower.includes("bill")) row.icon = "📄";
+        else if (catLower.includes("salary") || catLower.includes("income"))
+          row.icon = "💰";
+        else row.icon = "💳";
       }
 
       return row;
@@ -43,10 +60,11 @@ export default function Header() {
       try {
         const csvText = e.target.result;
         const parsedData = parseCSV(csvText);
-        setTransactions(parsedData);
+        onTransactionsUpload(parsedData);
         console.log("Parsed transactions:", parsedData);
       } catch (error) {
         console.error("Error parsing CSV:", error);
+        alert("Error parsing CSV file. Please check the format.");
       }
     };
     reader.readAsText(file);

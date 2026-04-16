@@ -1,26 +1,24 @@
-import React from "react";
-import Sidebar from "./Sidebar.js";
+import React, { useState } from "react";
 import Header from "./Header.js";
-import SummaryCards from "../cards/SummaryCards.js";
-import ChartsSection from "../charts/ChartsSection.js";
-import UpcomingBills from "../sections/UpcomingBills.js";
+import TransactionList from "../sections/TransactionList.js";
 import "./Dashboard.css";
+import Sidebar from "./Sidebar.js";
 
 export default function Dashboard() {
+  const [transactions, setTransactions] = useState([]);
+
   return (
     <div className="dashboard">
       <Sidebar />
-      <Header />
-      <main className="main-content">
-        <div className="content-inner">
-          <SummaryCards />
-          <ChartsSection />
-          <div className="bottom-section">
-            <div></div>
-            <UpcomingBills />
-          </div>
+      <div className="main-layout">
+        <Header onTransactionsUpload={setTransactions} />
+        <main className="main-content">
+          <div className="content-inner"></div>
+        </main>
+        <div className="transaction-section">
+          <TransactionList transactions={transactions} />
         </div>
-      </main>
+      </div>
     </div>
   );
 }
