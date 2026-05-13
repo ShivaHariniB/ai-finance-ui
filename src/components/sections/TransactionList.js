@@ -17,6 +17,16 @@ export default function TransactionList({ transactions = [] }) {
     }
   };
 
+  // Get transaction type (Debit/Credit) based on amount
+  const getTransactionType = (amount) => {
+    if (typeof amount === "number") {
+      return amount < 0
+        ? { type: "Debit", color: "#ef4444" }
+        : { type: "Credit", color: "#10b981" };
+    }
+    return { type: "Transfer", color: "#6b7280" };
+  };
+
   // Format amount for display
   const formatAmount = (amount) => {
     if (typeof amount === "number") {
@@ -86,16 +96,20 @@ export default function TransactionList({ transactions = [] }) {
                     {formatAmount(transaction.amount)}
                   </td>
                   <td className="status-cell">
-                    <span
-                      className="status-badge"
-                      style={{
-                        backgroundColor:
-                          getStatusColor(transaction.status) + "20",
-                        color: getStatusColor(transaction.status),
-                      }}
-                    >
-                      ● {transaction.status || "Completed"}
-                    </span>
+                    {(() => {
+                      const txType = getTransactionType(transaction.amount);
+                      return (
+                        <span
+                          className="status-badge"
+                          style={{
+                            backgroundColor: txType.color + "20",
+                            color: txType.color,
+                          }}
+                        >
+                          ● {txType.type}
+                        </span>
+                      );
+                    })()}
                   </td>
                   <td className="action-cell">
                     <button className="row-menu-btn">⋯</button>

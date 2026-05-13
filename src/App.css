@@ -27,10 +27,11 @@ body {
 
 /* ==================== APP LAYOUT ==================== */
 .App {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   background: #f9fafb;
+  overflow: hidden;
 }
 
 /* ==================== SCROLLBAR STYLES ==================== */

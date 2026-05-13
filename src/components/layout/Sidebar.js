@@ -43,53 +43,56 @@ export default function Sidebar() {
           <input type="text" placeholder="Search" />
         </div>
 
-        {/* Main Menu */}
-        <div className="menu-section">
-          <p className="menu-label">MAIN MENU</p>
-          <nav className="sidebar-nav">
-            {menuItems.map((item) => (
-              <a key={item.id} href="#/" className="nav-item">
-                <i className={`bi ${item.icon} nav-icon`}></i>
-                <span className="nav-label">{item.label}</span>
-              </a>
-            ))}
-          </nav>
-        </div>
+        {/* Scrollable Menu Container */}
+        <div className="sidebar-menu-container">
+          {/* Main Menu */}
+          <div className="menu-section">
+            <p className="menu-label">MAIN MENU</p>
+            <nav className="sidebar-nav">
+              {menuItems.map((item) => (
+                <a key={item.id} href="#/" className="nav-item">
+                  <i className={`bi ${item.icon} nav-icon`}></i>
+                  <span className="nav-label">{item.label}</span>
+                </a>
+              ))}
+            </nav>
+          </div>
 
-        {/* Features */}
-        <div className="menu-section">
-          <p className="menu-label">FEATURES</p>
-          <nav className="sidebar-nav">
-            {featureItems.map((item) => (
-              <a key={item.id} href="#/" className="nav-item">
-                <i className={`bi ${item.icon} nav-icon`}></i>
-                <span className="nav-label">{item.label}</span>
-              </a>
-            ))}
-          </nav>
-        </div>
+          {/* Features */}
+          {/* <div className="menu-section">
+            <p className="menu-label">FEATURES</p>
+            <nav className="sidebar-nav">
+              {featureItems.map((item) => (
+                <a key={item.id} href="#/" className="nav-item">
+                  <i className={`bi ${item.icon} nav-icon`}></i>
+                  <span className="nav-label">{item.label}</span>
+                </a>
+              ))}
+            </nav>
+          </div> */}
 
-        {/* General */}
-        <div className="menu-section">
-          <p className="menu-label">GENERAL</p>
-          <nav className="sidebar-nav">
-            {generalItems.map((item) => (
-              <a key={item.id} href="#/" className="nav-item">
-                <i className={`bi ${item.icon} nav-icon`}></i>
-                <span className="nav-label">{item.label}</span>
-              </a>
-            ))}
-          </nav>
+          {/* General */}
+          <div className="menu-section">
+            <p className="menu-label">GENERAL</p>
+            <nav className="sidebar-nav">
+              {generalItems.map((item) => (
+                <a key={item.id} href="#/" className="nav-item">
+                  <i className={`bi ${item.icon} nav-icon`}></i>
+                  <span className="nav-label">{item.label}</span>
+                </a>
+              ))}
+            </nav>
+          </div>
         </div>
 
         {/* Plan section */}
-        <div className="sidebar-plan">
+        {/* <div className="sidebar-plan">
           <h4 className="plan-title">Starter Plan</h4>
           <p className="plan-desc">
             Upgrade to the enterprise plan & get attractive discounts
           </p>
           <button className="upgrade-btn">Upgrade Plan</button>
-        </div>
+        </div> */}
 
         {/* Logout */}
         <div className="sidebar-footer">
