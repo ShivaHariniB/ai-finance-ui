@@ -146,93 +146,56 @@ export default function EarningOverview({ transactions = [] }) {
     return data;
   }, [transactions, selectedMonth]);
 
+  // Calculate trend between two periods
+  const calculateTrend = () => {
+    if (chartData.length < 2) return { trend: 0, trendPositive: true };
+
+    const current = chartData[chartData.length - 1].income;
+    const previous = chartData[chartData.length - 2].income;
+
+    if (previous === 0) return { trend: 0, trendPositive: true };
+
+    const trendPercent = (((current - previous) / previous) * 100).toFixed(1);
+    return { trend: trendPercent, trendPositive: current >= previous };
+  };
+
   // Get selected month data and calculate trend
   const selectedMonthData = useMemo(() => {
     const now = new Date();
     const currentMonth = now.getMonth();
-    const currentYear = now.getFullYear();
 
-    let selectedMonthIncome = 0;
+    // Calculate total income across all periods
+    const selectedMonthIncome = chartData.reduce(
+      (sum, item) => sum + item.income,
+      0,
+    );
+
+    // Determine display label
     let selectedMonthDisplay = "";
-    let trend = 0;
-    let trendPositive = true;
-    let selectedMonthIndex = chartData.length - 1;
-
     if (selectedMonth === "This Month") {
-      // Sum all weeks for this month
-      selectedMonthIncome = chartData.reduce(
-        (sum, item) => sum + item.income,
-        0,
-      );
       selectedMonthDisplay = MONTH_NAMES[currentMonth];
-
-      // Calculate trend based on last 2 weeks
-      if (chartData.length >= 2) {
-        const currentWeek = chartData[chartData.length - 1].income;
-        const previousWeek = chartData[chartData.length - 2].income;
-        if (previousWeek > 0) {
-          trend = (((currentWeek - previousWeek) / previousWeek) * 100).toFixed(
-            1,
-          );
-          trendPositive = currentWeek >= previousWeek;
-        }
-      }
     } else if (selectedMonth === "Last Month") {
-      // Sum all weeks for last month
-      selectedMonthIncome = chartData.reduce(
-        (sum, item) => sum + item.income,
-        0,
-      );
       const lastMonth = currentMonth === 0 ? 11 : currentMonth - 1;
       selectedMonthDisplay = MONTH_NAMES[lastMonth];
     } else if (selectedMonth === "Last 3 Months") {
-      // Sum all 3 months
-      selectedMonthIncome = chartData.reduce(
-        (sum, item) => sum + item.income,
-        0,
-      );
       selectedMonthDisplay = "Last 3 Months";
-
-      // Calculate trend between last month and previous month
-      if (chartData.length >= 2) {
-        const lastMonthIncome = chartData[chartData.length - 1].income;
-        const previousMonthIncome = chartData[chartData.length - 2].income;
-        if (previousMonthIncome > 0) {
-          trend = (
-            ((lastMonthIncome - previousMonthIncome) / previousMonthIncome) *
-            100
-          ).toFixed(1);
-          trendPositive = lastMonthIncome >= previousMonthIncome;
-        }
-      }
     } else {
-      // Last 6 Months
-      selectedMonthIncome = chartData.reduce(
-        (sum, item) => sum + item.income,
-        0,
-      );
       selectedMonthDisplay = "Last 6 Months";
-
-      // Calculate trend between last month and previous month
-      if (chartData.length >= 2) {
-        const lastMonthIncome = chartData[chartData.length - 1].income;
-        const previousMonthIncome = chartData[chartData.length - 2].income;
-        if (previousMonthIncome > 0) {
-          trend = (
-            ((lastMonthIncome - previousMonthIncome) / previousMonthIncome) *
-            100
-          ).toFixed(1);
-          trendPositive = lastMonthIncome >= previousMonthIncome;
-        }
-      }
     }
+
+    // Calculate trend only for multi-period views
+    const shouldShowTrend =
+      ["Last 3 Months", "Last 6 Months"].includes(selectedMonth) ||
+      selectedMonth === "This Month";
+    const { trend, trendPositive } = shouldShowTrend
+      ? calculateTrend()
+      : { trend: 0, trendPositive: true };
 
     return {
       income: selectedMonthIncome,
       month: selectedMonthDisplay,
       trend: trend,
       trendPositive: trendPositive,
-      selectedMonthIndex: selectedMonthIndex,
     };
   }, [selectedMonth, chartData]);
 
