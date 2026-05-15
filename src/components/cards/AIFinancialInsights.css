@@ -1,0 +1,188 @@
+/* AI Financial Insights Card - Component-specific styles only */
+
+.insights-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.insights-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+  padding-right: 4px;
+  min-height: 0;
+}
+
+.insights-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.insights-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.insights-list::-webkit-scrollbar-thumb {
+  background-color: #d1d5db;
+  border-radius: 3px;
+}
+
+.insights-list::-webkit-scrollbar-thumb:hover {
+  background-color: #9ca3af;
+}
+
+.insight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #f0f2f5;
+  background-color: #f9fafb;
+  transition: all 0.2s ease;
+}
+
+.insight-item:hover {
+  border-color: #e5e7eb;
+  background-color: #f3f4f6;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Insight Type Styling */
+.insight-item.insight-success {
+  background-color: #f0fdf4;
+  border-color: #dcfce7;
+}
+
+.insight-item.insight-success:hover {
+  background-color: #e7fcee;
+  border-color: #bbf7d0;
+}
+
+.insight-item.insight-warning {
+  background-color: #fffbeb;
+  border-color: #fef3c7;
+}
+
+.insight-item.insight-warning:hover {
+  background-color: #fffacd;
+  border-color: #fde047;
+}
+
+.insight-item.insight-info {
+  background-color: #f0f9ff;
+  border-color: #e0f2fe;
+}
+
+.insight-item.insight-info:hover {
+  background-color: #e0f2ff;
+  border-color: #bae6fd;
+}
+
+.insight-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.insight-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.insight-title {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 600;
+  color: #1f2937;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+}
+
+.insight-message {
+  margin: 2px 0 0 0;
+  font-size: 10px;
+  color: #6b7280;
+  font-weight: 400;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.insights-empty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 12px;
+}
+
+.insights-empty p {
+  margin: 0;
+  font-size: 11px;
+  color: #9ca3af;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 1023px) {
+  .insights-list {
+    max-height: 150px;
+  }
+
+  .insight-item {
+    padding: 8px;
+  }
+
+  .insight-icon {
+    font-size: 14px;
+    width: 22px;
+    height: 22px;
+  }
+
+  .insight-title {
+    font-size: 10px;
+  }
+
+  .insight-message {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 767px) {
+  .insights-list {
+    max-height: 120px;
+  }
+
+  .insight-item {
+    padding: 6px 8px;
+    gap: 6px;
+  }
+
+  .insight-icon {
+    font-size: 12px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .insight-title {
+    font-size: 9px;
+  }
+
+  .insight-message {
+    font-size: 8px;
+  }
+}

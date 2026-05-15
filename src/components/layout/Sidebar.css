@@ -133,6 +133,18 @@
   border-left-color: transparent;
 }
 
+.nav-item.active {
+  background: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%);
+  color: #ffffff;
+  border-left-color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.nav-item.active .nav-icon {
+  color: #ffffff;
+}
+
 .nav-item:hover .nav-icon {
   color: #ffffff;
 }

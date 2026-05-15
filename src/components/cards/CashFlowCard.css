@@ -1,0 +1,189 @@
+/* Cash Flow Card - Component-specific styles only */
+
+/* ============= MAIN CONTAINER ============= */
+
+.cash-flow-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+}
+
+/* ============= HEADER SECTION ============= */
+
+.cash-flow-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cash-flow-title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1f2937;
+  letter-spacing: -0.3px;
+}
+
+.trend-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.trend-badge.positive {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.trend-badge.negative {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+/* ============= METRICS ROW ============= */
+
+.metrics-row {
+  display: flex;
+  gap: 12px;
+  justify-content: space-around;
+  padding: 10px 0;
+  border-top: 1px solid #f0f2f5;
+  border-bottom: 1px solid #f0f2f5;
+}
+
+.metric-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: center;
+  flex: 1;
+}
+
+.metric-label {
+  font-size: 10px;
+  font-weight: 500;
+  color: #9ca3af;
+  text-transform: capitalize;
+}
+
+.metric-value {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1f2937;
+  letter-spacing: -0.3px;
+}
+
+.metric-value.income,
+.metric-value.positive {
+  color: #10b981;
+}
+
+.metric-value.expense,
+.metric-value.negative {
+  color: #ef4444;
+}
+
+/* ============= CHART SECTION ============= */
+
+.cash-flow-chart {
+  flex: 1;
+  min-height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-chart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+.empty-chart p {
+  margin: 0;
+}
+
+/* ============= TABLET RESPONSIVENESS ============= */
+
+@media (max-width: 1023px) {
+  .cash-flow-container {
+    gap: 8px;
+  }
+
+  .cash-flow-title {
+    font-size: 12px;
+  }
+
+  .metrics-row {
+    gap: 8px;
+    padding: 8px 0;
+  }
+
+  .metric-label {
+    font-size: 9px;
+  }
+
+  .metric-value {
+    font-size: 11px;
+  }
+
+  .cash-flow-chart {
+    min-height: 140px;
+  }
+}
+
+/* ============= MOBILE RESPONSIVENESS ============= */
+
+@media (max-width: 767px) {
+  .cash-flow-container {
+    gap: 6px;
+  }
+
+  .cash-flow-title {
+    font-size: 11px;
+  }
+
+  .trend-badge {
+    font-size: 9px;
+    padding: 2px 6px;
+  }
+
+  .metrics-row {
+    gap: 6px;
+    padding: 6px 0;
+  }
+
+  .metric-item {
+    gap: 2px;
+  }
+
+  .metric-label {
+    font-size: 8px;
+  }
+
+  .metric-value {
+    font-size: 10px;
+  }
+
+  .cash-flow-chart {
+    min-height: 120px;
+  }
+
+  .empty-chart {
+    font-size: 11px;
+  }
+}

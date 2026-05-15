@@ -1,0 +1,127 @@
+/* Earning Overview Card - Component-specific styles only */
+
+.earning-chart-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+}
+
+/* Header Section */
+.earning-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.earning-title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1f2937;
+  letter-spacing: -0.3px;
+}
+
+.month-dropdown {
+  padding: 5px 10px;
+  border: 2px solid #2563eb;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #2563eb;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.month-dropdown:hover {
+  background-color: #f0f9ff;
+}
+
+/* Value Section */
+.earning-value-section {
+  flex-shrink: 0;
+}
+
+.value-display {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.earning-value {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f2937;
+  letter-spacing: -0.5px;
+}
+
+.earning-trend {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.earning-trend.positive {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.earning-trend.negative {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.month-label {
+  margin: 4px 0 0 0;
+  font-size: 10px;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+/* Chart Section */
+.earning-chart {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 1023px) {
+  .earning-chart-container {
+    gap: 6px;
+  }
+
+  .earning-value {
+    font-size: 20px;
+  }
+
+  .month-label {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 767px) {
+  .earning-chart-container {
+    gap: 5px;
+  }
+
+  .earning-value {
+    font-size: 18px;
+  }
+
+  .earning-trend {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+
+  .month-label {
+    font-size: 8px;
+  }
+}
