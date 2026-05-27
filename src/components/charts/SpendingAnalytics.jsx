@@ -49,7 +49,9 @@ export default function SpendingAnalytics({ transactions = [] }) {
 
   // Helper to calculate total expenses from transactions
   const calculateExpenseTotal = (txns) => {
-    return txns.filter(isExpense).reduce((sum, t) => sum + Math.abs(t.amount), 0);
+    return txns
+      .filter(isExpense)
+      .reduce((sum, t) => sum + Math.abs(t.amount), 0);
   };
 
   // Helper to get previous month and year
@@ -263,7 +265,7 @@ export default function SpendingAnalytics({ transactions = [] }) {
   const chartData = spendingData.data;
 
   // Render trend badge
-  const renderTrendBadge = () => (
+  const renderTrendBadge = () =>
     trendData.showTrend && (
       <span
         className={`spending-trend ${
@@ -273,8 +275,7 @@ export default function SpendingAnalytics({ transactions = [] }) {
         {trendData.increased ? "+" : "-"}
         {trendData.trend}% {trendData.increased ? "↑" : "↓"}
       </span>
-    )
-  );
+    );
 
   // Render legend item
   const renderLegendItem = (item, index) => (
